@@ -1,0 +1,43 @@
+
+#loginForm {
+  width:500px;  
+  float:right;
+  text-align:left;
+  background-color: white;
+  border-radius: 3%;
+
+  
+}
+.form-control{
+    width: 80%;
+}
+.reg{
+  text-align: center;
+  padding-top: 1%;
+}
+.mb-3{
+    padding-left: 3%;
+    padding-right: 6%;
+}
+
+.stylebutton{
+  font-size: 16px;
+  padding-bottom: 1%;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+  text-align: center;
+  background-color: white;
+}
+.forgotpassword{
+  padding-bottom: 2%;
+  text-align: center;
+}
+.buttonFormat{
+  text-align: center;
+  padding-bottom: 1%;
+}
+
+.stylebutton:hover {
+  background-color: #1821c7; 
+  color: white;
+}

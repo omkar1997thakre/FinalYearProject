@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/registerationform.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Login Form Validation</title>
+</head>
+<body>
+   {{>navbar}}
+   <div class="regdata">
+   <h1><strong>   REGISTERATION FORM </strong></h1>
+   <div class="formData w-5 ">
+  <form class="row g-3 " action="/register" method="POST" id="formstyle">
+    <!--FIRST NAME-->
+     <div class="col-md-6 ">
+    <label for="firstName4" class="form-label" >FirstName</label>
+    <input type="text" class="form-control" id="firstName4" name="firstName">
+  </div>
+ <!--LAST NAME-->
+    <div class="col-md-6">
+    <label for="lastName4" class="form-label">LastName</label>
+    <input type="text" class="form-control" id="lastName4" name="lastName">
+  </div>
+<!--EMAIL-->
+<div class="col-12">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail4" name="email">
+  </div>
+<!--PASSWORD-->
+  <div class="col-md-6 ">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4" name="password">
+  </div>
+  <!--CONFIRM PASSWORD-->
+  <div class="col-md-6">
+    <label for="inputConfrimPassword4" class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" id="inputConfrimPassword4" name="confirmpassword">
+  </div>
+  <!--Address-->
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+  </div>
+  <!--City-->
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label" id="citycolor">City</label>
+    <input type="text" class="form-control" id="inputCity" name="city">
+  </div>
+  <!--State-->
+  <div class="col-md-6">
+    <label for="inputState" class="form-label" id="statecolor">State</label>
+    <select id="inputState" class="form-select" name="state">
+      <option selected>Choose...</option>
+      <option>Andhra Pradesh</option>>
+      <option>Arunachal Pradesh</option> 
+      <option>Assam</option> 
+      <option>Bihar</option> 
+      <option>Chhattisgarh</option> 
+      <option>Goa</option> 
+      <option>Gujarat</option> 
+      <option>Haryana</option>  
+      <option>Himachal Pradesh</option> 
+      <option>Jharkhand</option> 
+      <option>Karnataka</option> 
+      <option>Kerala</option> 
+      <option>Madhya Pradesh</option> 
+      <option>Maharashtra</option> 
+      <option>Manipur</option> 
+      <option>Meghalaya</option> 
+      <option>Mizoram</option> 
+      <option>Nagaland</option> 
+      <option>Odisha</option> 
+      <option>Punjab</option>
+      <option>Rajasthan</option>
+      <option>Sikkim</option>
+      <option>Tamil Nadu</option>
+      <option>Telangana</option>
+      <option>Tripura</option>
+      <option>Uttar Pradesh</option>
+      <option>Uttarakhand</option>
+      <option>West Bengal</option>
+    </select>
+  </div>
+  <!--Gender-->
+
+<div >
+  <table>
+    <tbody>
+      <tr id="genderstyle">
+        <td>Gender &nbsp; &nbsp; &nbsp;</td>
+        <td><input type="radio" name="gender" id="genderMale" value="1"></td>
+        <td>Male &nbsp; &nbsp;</td>
+        &nbsp;
+        <td><input type="radio" name="gender" id="genderFemale" value="1"></td>
+        <td>Female</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Register</button>
+  </div>
+  </div>
+</form>
+</div>
+</body>
+</html>
