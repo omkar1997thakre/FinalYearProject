@@ -7,12 +7,20 @@ const app=express();
 const path=require("path")
 //we need the hbs packages
 const hbs=require("hbs")
+
+
+
+
+
+
+
 //port--> not to limit it on default port.
 const port=process.env.PORT||3000;
 //importing the connection.js module
 require("./db/connection");
 //importing the registeration file register.hbs
 const Register = require("./models/register");
+const { throws } = require("assert");
 
 const static_path=path.join(__dirname,"../public")
 //path for templates--> viws
@@ -40,13 +48,16 @@ app.get("/",(req,res)=>{
 app.get("/register",(req,res)=>{
     res.render("register");
 })
+//validtion
+
+var database
 //create a new database
 app.post("/register", async(req,res)=>{
     
     const password= req.body.password;
     const confirmpassword=req.body.confirmpassword;
 
-    if(password ===confirmpassword)
+    if(password === confirmpassword)
     {
         const registerUser=new Register({
         FirstName: req.body.firstName,
@@ -67,6 +78,80 @@ app.post("/register", async(req,res)=>{
     return res.send("Password not mtching")
  }
 })
+
+//to get the login page
+
+app.get("/signin",(req,res)=>{
+    res.render("login");
+
+})
+
+//to post
+
+const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const url = 'mongodb://localhost:27017';
+const dbName = 'UserData';
+const collectionName = 'registerdatas';
+
+app.post('/login', (req, res) => {
+  const userEnteredEmail = req.body.email;
+  const userEnteredPassword = req.body.password;
+
+  const client = new MongoClient(url, { useNewUrlParser: true });
+
+  client.connect((err) => {
+    if (err) {
+      console.error('Error connecting to the server:', err);
+      return res.status(500).send('Internal server error');
+    }
+
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+
+    collection.findOne({ Email: userEnteredEmail }, (err, user) => {
+      if (err) {
+        console.error('Error fetching data:', err);
+        client.close();
+        return res.status(500).send('Internal server error');
+      }
+
+      if (user) {
+        // Email found in the database
+        if (user.Password === userEnteredPassword) {
+          // Password matches
+          client.close();
+          return res.render("index")
+          //return res.status(200).send('Login successful, redirect to home page');
+        } else {
+          // Password doesn't match
+          client.close();
+          return res.status(401).send('Invalid password');
+        }
+      } else {
+        // Email not found in the database
+        client.close();
+        return res.status(404).send('Email not found');
+      }
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
 
 //to listen the app at this port number
 app.listen(port,()=>{
