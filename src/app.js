@@ -75,7 +75,7 @@ app.post("/register", async(req,res)=>{
    return res.status(201).render("index");
  } 
  else {
-    return res.send("Password not mtching")
+    return res.send("Password not matching")
  }
 })
 
@@ -142,10 +142,71 @@ app.post('/login', (req, res) => {
   });
 });
 
+//forgotpassword calling forgot page
 
+app.get("/forgotpassword",(req,res)=>{
+  res.render("forgotpassword")
+})
 
+//forgot password check:
+app.post('/forgotpassword',(req,res)=>{
+  //retrive the email entered by the user
+  const userEnteredEmail=req.body.email;
+  const newPassword=req.body.password;
+  const newconfirmpassword=req.body.confirmpassword;
+  //check whether the email is present in mongodb
+  const client = new MongoClient(url, { useNewUrlParser: true });
+  client.connect((err) => {
+    if (err) {
+      console.error('Error connecting to the server:', err);
+      return res.status(500).send('Internal server error');
+    }
 
+    const updateFields = {
+      $set: {
+        Password: newPassword,
+        ConfrimPassword: newconfirmpassword,
+      },
+    };
 
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+    console.log(collection)
+    collection.findOne({ Email: userEnteredEmail }, (err, user) => {
+      if (err) {
+        console.error('Error fetching data:', err);
+        client.close();
+        return res.status(500).send('Internal server error');
+      }
+       if (user) {
+        console.log("present in database")
+          if(newPassword === newconfirmpassword){
+             // Locate the user by their email and update the password
+             console.log(newPassword)
+              db.collection('registerdatas').updateOne(
+                     { Email: userEnteredEmail },
+                    updateFields,
+                   //  { $set: { Password: newPassword } ,},
+                      function (err, result) {
+                     if (err) {
+                         console.error('Error updating password:', err);
+                          client.close();
+                         return;
+                           }
+
+                  console.log('Password updated successfully');
+                  return res.render("index");
+  // Close the connection
+  client.close();  
+    })
+  }
+}
+else{
+  return res.render("register");
+}
+})
+})
+})
 
 
 
