@@ -11,12 +11,19 @@ const hbs=require("hbs")
 
 //port--> not to limit it on default port.
 const port=process.env.PORT||3000;
+
 //importing the connection.js module
 require("./db/connection");
+
 //importing the registeration file register.hbs
 const Register = require("./models/register");
+
 //importing the slider data
 const Slider = require("./models/sliderAdv");
+
+//importing the movie data collection used for storing movie information
+const MovieData=require("./models/movies");
+
 
 const { throws } = require("assert");
 
@@ -37,6 +44,8 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.static(static_path))
 //Image Path(to display image in the website)
 app.use(express.static(imagepath))
+//check
+//app.use(express.static("public"));
 
 
 //to set the hbs engine
@@ -47,12 +56,12 @@ app.set("views",templates_path)
 hbs.registerPartials(partials_path)
 //to get the home page (req,res) are the callback functions
 app.get("/",async (req,res)=>{
-   const slider=await Slider.find();  
+   const slider=await Slider.find(); 
+   const movie=await MovieData.find();
   // console.log(slider)
   res.render("index",{
-    slides:slider})
-
-
+    slides:slider,
+    movies: movie})
     //res.send("WELCOME");
 })
 app.get("/register",(req,res)=>{
