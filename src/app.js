@@ -24,6 +24,9 @@ const Slider = require("./models/sliderAdv");
 //importing the movie data collection used for storing movie information
 const MovieData=require("./models/movies");
 
+//calling the movie details:
+const MovieDetails=require("./models/eachMovie");
+
 
 const { throws } = require("assert");
 
@@ -58,12 +61,21 @@ hbs.registerPartials(partials_path)
 app.get("/",async (req,res)=>{
    const slider=await Slider.find(); 
    const movie=await MovieData.find();
+   //console.log(movie)
   // console.log(slider)
   res.render("index",{
     slides:slider,
-    movies: movie})
+    movies: movie
+  })
     //res.send("WELCOME");
 })
+//chcek
+app.get("/movieData",async (req,res)=>{
+  const movieDetail=await MovieDetails.find();
+  console.log(movieDetail);
+  res.render("movieData",{moviedetails:movieDetail})
+})
+
 app.get("/register",(req,res)=>{
     res.render("register");
 })
@@ -108,6 +120,7 @@ app.get("/signin",(req,res)=>{
 //to post
 
 const bodyParser = require('body-parser');
+const MovieDetail = require("./models/eachMovie");
 const MongoClient = require('mongodb').MongoClient;
 
 
