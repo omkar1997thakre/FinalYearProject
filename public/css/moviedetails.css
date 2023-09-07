@@ -1,0 +1,22 @@
+.img{
+    padding-top: 7px;
+
+}
+/*.backimage{
+    background-image: url("backgroud-JawanImage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Set the aspect ratio here, e.g., 16:9 */
+   /* padding-top: 5%; /* 9/16 = 56.25% (for a 16:9 aspect ratio) */
+   /* overflow: hidden;
+}*/
+.about-movie{
+    padding-top: 5px;
+    height: 25%;
+}
+.text{
+    font-size: 30px;
+    padding-left: 8px;
+    padding-top: 5px;
+
+}

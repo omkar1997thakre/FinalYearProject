@@ -1,13 +1,31 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply styles to the container */
+#formstyle{
+     display: flex;
+    width:500px; /* Adjust the max-width as needed */
+     margin: 0 auto;
+     float: right;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 body{
-    background-image: url("pop-corn.jpg");
+    background-image: url("pop.webp");
     background-repeat: no-repeat;
-   background-size:cover;
-   margin: 0;
-   
+    background-position: center;
+    background-size:100% 100%;
 }
-html,body{
+/*html,body{
     height:100%;
-}
+}*/
 
 .formData{
     padding-left: 60%;
@@ -24,6 +42,9 @@ h1{
 formstyle{
     background-color: white;
 }
-#genderstyle{
-    color: white;
+.regbutton{
+    text-align: center;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    
 }
