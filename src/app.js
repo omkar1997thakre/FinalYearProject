@@ -240,7 +240,10 @@ else{
 })
 })
 
-
+//book ticket
+app.get("/bookticket",(req,res)=>{
+  res.render("bookticket")
+})
 
 
 

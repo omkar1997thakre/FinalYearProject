@@ -20,3 +20,20 @@
     padding-top: 5px;
 
 }
+.share-option {
+    position: fixed;
+    top: 85px;
+    right: 30px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Style for the share icon (adjust the size and color as needed) */
+.share-icon {
+    width: 24px;
+    height: 24px;
+    fill: #007bff; /* Adjust the color as needed */
+}
