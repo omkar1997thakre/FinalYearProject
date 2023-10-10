@@ -1,12 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+  <title>Date Example</title>
+  <link rel="stylesheet" href="/css/bookticket.css">
 </head>
 <body>
-    {{>navbar}}
-    
+{{>navbar}}
+<div class="date-container">
+  <div class="date-block">
+    <p class="day" id="currentDay"><a href="#"></a></p>
+    <p class="date" id="currentDate"><a href="#"></a></p>
+    <p class="month" id="currentMonth"><a href="#"></a></p>
+  </div>
+
+  <div class="date-block">
+    <p class="day" id="nextDay"><a href="#"></a></p>
+    <p class="date" id="nextDate"><a href="#"></a></p>
+    <p class="month" id="nextMonth"><a href="#"></a></p>
+  </div>
+
+  <div class="date-block">
+    <p class="day" id="dayAfterNext"><a href="#"></a></p>
+    <p class="date" id="dateAfterNext"><a href="#"></a></p>
+    <p class="month" id="monthAfterNext"><a href="#"></a></p>
+  </div>
+
+  <div class="date-block">
+    <p class="day" id="twoDaysAfterNext"><a href="#"></a></p>
+    <p class="date" id="dateTwoDaysAfterNext"><a href="#"></a></p>
+    <p class="month" id="monthTwoDaysAfterNext"><a href="#"></a></p>
+  </div>
+</div>
+
+<script>
+function formatDate(date) {
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  const dayOfWeek = daysOfWeek[date.getDay()];
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+
+  return { dayOfWeek, day, month };
+}
+
+// Calculate today's date
+const currentDate = new Date();
+const formattedCurrentDate = formatDate(currentDate);
+document.getElementById('currentDay').innerHTML = `<a href="#">${formattedCurrentDate.dayOfWeek}</a>`;
+document.getElementById('currentDate').innerHTML = `<a href="#">${formattedCurrentDate.day}</a>`;
+document.getElementById('currentMonth').innerHTML = `<a href="#">${formattedCurrentDate.month}</a>`;
+
+// Calculate the dates for the next three days
+const nextDay = new Date(currentDate);
+nextDay.setDate(currentDate.getDate() + 1);
+const formattedNextDate = formatDate(nextDay);
+document.getElementById('nextDay').innerHTML = `<a href="#">${formattedNextDate.dayOfWeek}</a>`;
+document.getElementById('nextDate').innerHTML = `<a href="#">${formattedNextDate.day}</a>`;
+document.getElementById('nextMonth').innerHTML = `<a href="#">${formattedNextDate.month}</a>`;
+
+const dayAfterNext = new Date(currentDate);
+dayAfterNext.setDate(currentDate.getDate() + 2);
+const formattedDayAfterNext = formatDate(dayAfterNext);
+document.getElementById('dayAfterNext').innerHTML = `<a href="#">${formattedDayAfterNext.dayOfWeek}</a>`;
+document.getElementById('dateAfterNext').innerHTML = `<a href="#">${formattedDayAfterNext.day}</a>`;
+document.getElementById('monthAfterNext').innerHTML = `<a href="#">${formattedDayAfterNext.month}</a>`;
+
+const twoDaysAfterNext = new Date(currentDate);
+twoDaysAfterNext.setDate(currentDate.getDate() + 3);
+const formattedTwoDaysAfterNext = formatDate(twoDaysAfterNext);
+document.getElementById('twoDaysAfterNext').innerHTML = `<a href="#">${formattedTwoDaysAfterNext.dayOfWeek}</a>`;
+document.getElementById('dateTwoDaysAfterNext').innerHTML = `<a href="#">${formattedTwoDaysAfterNext.day}</a>`;
+document.getElementById('monthTwoDaysAfterNext').innerHTML = `<a href="#">${formattedTwoDaysAfterNext.month}</a>`;
+</script>
+
 </body>
 </html>

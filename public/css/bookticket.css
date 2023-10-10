@@ -1,0 +1,35 @@
+ /* Remove underline from anchor tags */
+ a {
+    text-decoration: none;
+  }
+
+  /* Style for date container */
+  .date-container {
+    text-align: left;
+    font-family: Arial, sans-serif;
+    padding-left: 15px;
+  }
+
+  /* Style for day */
+  .day {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px; /* Reduce spacing between day and date */
+  }
+
+  /* Style for date */
+  .date {
+    font-size: 28px;
+    margin-bottom: 5px; /* Reduce spacing between date and month */
+  }
+
+  /* Style for month */
+  .month {
+    font-size: 16px;
+  }
+
+  /* Display dates inline */
+  .date-block {
+    display: inline-block;
+    margin: 10px;
+  }
