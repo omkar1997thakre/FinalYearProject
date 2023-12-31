@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="container">
+        <h1>Receipt</h1>
+        <p>Payment Status: <span id="paymentStatus"></span></p>
+        <p>Timing: <span id="timing"></span></p>
+        <p>Selected Seat: <span id="seatNumber"></span></p>
+        <p>Movie Name: <span id="movieName"></span></p>
+        <!-- Add more details as needed -->
+    </div>
+    <!--To retrive information from URL-->
+ <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Retrieve values from the URL
+            const paymentStatus=urlParams.get('paymentStatus') || 'N/A';
+            const timing = urlParams.get('timing') || 'N/A';
+            const seatNumber = urlParams.get('seatNumber') || 'N/A';
+            const movieName = urlParams.get('movieName') || 'N/A';
+
+            // Display values on the page
+            document.getElementById('timing').innerText = timing;
+            document.getElementById('seatNumber').innerText = seatNumber;
+            document.getElementById('movieName').innerText = movieName;
+            document.getElementById('paymentStatus').innerText = paymentStatus;
+        });
+    </script>
+
+
+
+</body>
+</html>

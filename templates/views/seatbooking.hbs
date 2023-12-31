@@ -7,7 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+ 
 <div class="container">
+  <h3>Show's Timing</h3>
+  <div id="selectedTiming"></div>
   <div class="row">
     <div class="col-6">
       <h2>How many Seats?</h2>
@@ -34,6 +37,15 @@
 </div>
 
   <!-- Assume selectedNumber is the variable representing the selected number -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the timing parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const timing = urlParams.get('timing') || 'N/A';
 
+        // Use the timing as needed, e.g., display it on the page
+        document.getElementById('selectedTiming').innerText = timing;
+    });
+</script>
 </body>
 </html>

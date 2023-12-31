@@ -23,6 +23,7 @@
             {{#each movies}}
             <div class="col-md-4">
                 <div class="image-container"> 
+                      <a href="{{this.PageUrl}}?movieName={{this.Name}}"></a>
                     <a href="{{this.PageUrl}}">
                     <img src="{{this.ImageUrl}}" class="img-thumbnail" alt="Not Found">
                     </a>

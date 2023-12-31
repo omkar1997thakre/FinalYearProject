@@ -69,13 +69,36 @@ app.get("/",async (req,res)=>{
   })
     //res.send("WELCOME");
 })
+/*
 //chcek
+async function getMovieDetailsByName(movieName) {
+  try {
+    const movieDetails = await MovieDetails.findOne({ Name: movieName });
+    return movieDetails;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    return null;
+  }
+}
+
+app.get('/movieData', async (req, res) => {
+  const movieName = req.query.movieName || 'N/A';
+
+  // Fetch movie details based on movieName from your database
+  const movieDetails = await getMovieDetailsByName(movieName);
+  console.log(movieDetails)
+  const movieDetail=await MovieDetails.find();
+  console.log(movieDetail);
+  // Assuming you have fetched movieDetails, render the view with movieDetails
+  res.render('movieData', { moviedetails: movieDetails, movieName: movieName });
+});
+*/
 
 app.get("/movieData",async (req,res)=>{
   const movieDetail=await MovieDetails.find();
   console.log(movieDetail);
   res.render("movieData",{moviedetails:movieDetail})
-})
+}) ;
 
 /*
 app.get('/movies/:id', async (req, res) => {
@@ -282,16 +305,57 @@ app.get("/bookticket",(req,res)=>{
   res.render("bookticket")
 })
 
-
+/*
 //seatbooking
 app.get("/seatbooking",(req,res)=>{
   res.render("seatbooking")
-})
+})*/
+
+app.get("/seatbooking", (req, res) => {
+  const timing = req.query.timing || 'N/A';
+  res.render("seatbooking", { timing });
+});
 
 //seats1,2,3,4
-app.get("/seat1",(req,res)=>{
-  res.render("seat1");
+app.get("/seat1",async(req,res)=>{
+  const movie=await MovieData.find();
+  res.render("seat1",{movies: movie});
 })
+
+/*
+app.get("/seat1", (req, res) => {
+  // Assuming you have the movie name available, replace "Your Movie Name" with the actual movie name
+  const movieData = { name: "Your Movie Name" };
+
+  res.render("seat1", { movieData });
+});*/
+
+/* 
+app.get('/moviedetails', (req, res) => {
+  const movieName = req.query.movieName || 'N/A';
+
+  // Fetch movie details based on movieName from your database
+  // For example:
+  // const movieDetails = getMovieDetailsByName(movieName);
+
+  // Assuming you have fetched movieDetails, render the view with movieDetails
+  res.render('moviedetails', { movieDetails, movieName });
+});
+
+*/
+
+
+app.get("/payment", (req, res) => {
+  const seatNumber = req.query.seatNumber || 'N/A'; // Default to 'N/A' if no seat number is provided
+  const amount = req.query.amount || 0; // Default to 0 if no amount is provided
+  const timing=req.query.timing || 'N/A'
+  res.render("payment", { seatNumber, amount,timing });
+});
+
+app.get('/receipt', (req, res) => {
+  // Render the receipt.hbs template
+  res.render('receipt', { /* pass data if needed */ });
+});
 
 
 

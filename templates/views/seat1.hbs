@@ -5,129 +5,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Seat Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="seat.css">
 </head>
 
 <body>
-    <div class="movie-container">
-        <label>Pick a movie:</label>
-        <select id="movie">
-            <option value="650">Parasite (₹650)</option>
-            <option value="850">Joker (₹850)</option>
-            <option value="550">Jumanji: Next Level (₹550)</option>
-            <option value="750">Dolittle (₹750)</option>
-        </select>
-    </div>
+    <div class="movie-name">{{ movies.Name }}</div>
+    <div class="containerclass"><strong>Royal Sofa - Rs.400 </strong></div>
+    <hr class="line">
+
+    <ul class="list-inline" id="seatRowA">
+        <li class="list-inline-item" id="no-border">A</li>
+        <li class="list-inline-item seat">1</li>
+        <li class="list-inline-item seat">2</li>
+        <li class="list-inline-item seat occupied">3</li>
+        <li class="list-inline-item seat">4</li>
+    </ul>
+
+    <hr class="line">
+
+    <div class="containerclass"><strong>Royal Gold - Rs.380 </strong></div>
+    <hr class="line">
+
+    <ul class="list-inline" id="seatRowB">
+        <li class="list-inline-item" id="no-border">B</li>
+        <li class="list-inline-item seat">1</li>
+        <li class="list-inline-item seat">2</li>
+        <li class="list-inline-item seat">3</li>
+        <li class="list-inline-item seat">4</li>
+    </ul>
+
+    <hr class="line">
+
+    <div class="containerclass"><strong>Royal Silver - Rs.360 </strong></div>
+    <hr class="line">
+
+    <ul class="list-inline" id="seatRowC">
+        <li class="list-inline-item" id="no-border">C</li>
+        <li class="list-inline-item seat">1</li>
+        <li class="list-inline-item seat">2</li>
+        <li class="list-inline-item seat">3</li>
+        <li class="list-inline-item seat">4</li>
+    </ul>
+
+    <!-- For SCREEN -->
+    <div class="rectangle"></div>
 
     <ul class="showcase">
-        <li>
-            <div class="seat"></div>
-            <small>N/A</small>
+        <li class="removedot">
+            <div class="seatFill">
+                 <small>N/A</small>
+            </div>
         </li>
-        <li>
-            <div class="seat selected"></div>
-            <small>Selected</small>
+        <li class="removedot">
+            <div class="seatselectedfill">
+                <small>Selected</small>
+            </div>
+            
         </li>
-        <li>
-            <div class="seat occupied"></div>
-            <small>Occupied</small>
+        <li class="removedot">
+            <div class="seatoccupiedfill">
+                <small>Occupied</small>
+            </div>
+            
         </li>
     </ul>
 
-    <div class="container">
-        <div class="movie-screen">
-            <img src='screen-thumb.png' alt='screen' />
-        </div>
+    <script>
+     document.querySelectorAll('.seat').forEach(seat => {
+            seat.addEventListener('click', () => handleSeatClick(seat));
+        });
 
-        <div class="row-container">
-            <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-            </div>
-            <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-            </div>
-            <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
-            </div>
-            <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-            </div>
-            <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-            </div>
-            <h5 class='subtitle'>GOLD - ₹650</h5>
-            <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-            </div>
-            <div class="row">
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-            </div>
-            <h5 class='subtitle'>DIAMOND - ₹850</h5>
+        function handleSeatClick(seat) {
+            if (seat.classList.contains('occupied')) {
+                alert('This seat is already occupied. Please choose another seat.');
+                return;
+            }
 
-            <div class="text-wrapper">
-                <p class="text">Selected Seats <span id='count'>0</span>
-                    <p class="text">Total Price ₹<span id="total">0</span></p>
-            </div>
-        </div>
+            document.querySelectorAll('.seat.selected').forEach(selectedSeat => {
+                selectedSeat.classList.remove('selected');
+            });
 
-    </div>
+            seat.classList.add('selected');
+
+            const seatRow = seat.parentElement.id;
+            const seatNumber = seat.textContent;
+            const seatCategory = getSeatCategory(seatRow);
+            const seatAmount = calculateSeatAmount(seatCategory);
+
+            const confirmation = confirm(`Selected Seat: ${seatRow}${seatNumber}\nTotal Amount: Rs.${seatAmount}\nProceed to payment?`);
+
+            if (confirmation) {
+                window.location.href = `/payment?seatNumber=${seatNumber}&amount=${seatAmount}`;
+            }
+            
+        }
+
+        function getSeatCategory(seatRow) {
+            switch (seatRow) {
+                case 'seatRowA':
+                    return 'Royal Sofa';
+                case 'seatRowB':
+                    return 'Royal Gold';
+                case 'seatRowC':
+                    return 'Royal Silver';
+                default:
+                    return 'Unknown Category';
+            }
+        }
+
+        function calculateSeatAmount(category) {
+            switch (category) {
+                case 'Royal Sofa':
+                    return 400;
+                case 'Royal Gold':
+                    return 380;
+                case 'Royal Silver':
+                    return 360;
+                default:
+                    return 0;
+            }
+        }
+
+ 
 
 
-    <!-- <div class="text-wrapper">
-        <p class="text">Selected Seats <span id='count'>0</span>
-            <p class="text">Total Price ₹<span id="total">0</span></p>
-    </div> -->
 
-    <script src='script.js'></script>
+
+
+
+    </script>
 </body>
 
 </html>
