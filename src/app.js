@@ -70,11 +70,46 @@ app.get("/",async (req,res)=>{
     //res.send("WELCOME");
 })
 //chcek
+
 app.get("/movieData",async (req,res)=>{
   const movieDetail=await MovieDetails.find();
   console.log(movieDetail);
   res.render("movieData",{moviedetails:movieDetail})
 })
+
+/*
+app.get('/movies/:id', async (req, res) => {
+  try {
+    const movieDetails = await MovieDetails.findById(req.params.id);
+    if (!movieDetails) {
+      return res.status(404).send('Movie not found');
+    }
+    res.render('movie', { movieDetails });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+*/
+/*
+app.get('/movies', async (req, res) => {
+  try {
+    console.log('Request received for movie ID:', req.params.id);
+    const movieDetails = await MovieDetails.findById(req.params.id);
+    console.log('Movie details found:', movieDetails);
+    if (!movieDetails) {
+      console.log('Movie not found');
+      return res.status(404).send('Movie not found');
+    }
+    res.render('movie', { movieDetails });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+*/
+
+
 
 app.get("/register",(req,res)=>{
     res.render("register");
@@ -103,7 +138,8 @@ app.post("/register", async(req,res)=>{
     })
 
     const registered=await registerUser.save();
-   return res.status(201).render("index");
+    res.redirect("/");
+   //return res.status(201).render("index");
  } 
  else {
     return res.send("Password not matching")
@@ -158,7 +194,8 @@ app.post('/login', (req, res) => {
         if (user.Password === userEnteredPassword) {
           // Password matches
           client.close();
-          return res.render("index")
+          res.redirect("/");
+          //return res.render("/")
           //return res.status(200).send('Login successful, redirect to home page');
         } else {
           // Password doesn't match
@@ -227,7 +264,7 @@ app.post('/forgotpassword',(req,res)=>{
                            }
 
                   console.log('Password updated successfully');
-                  return res.render("index");
+                  res.render("login");
   // Close the connection
   client.close();  
     })
@@ -246,6 +283,15 @@ app.get("/bookticket",(req,res)=>{
 })
 
 
+//seatbooking
+app.get("/seatbooking",(req,res)=>{
+  res.render("seatbooking")
+})
+
+//seats1,2,3,4
+app.get("/seat1",(req,res)=>{
+  res.render("seat1");
+})
 
 
 

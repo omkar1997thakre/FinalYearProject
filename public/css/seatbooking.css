@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  /* Style for the numbers */
+  .number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    transition: background-color 0.3s;
+  }
+
+  /* Style for the hover effect */
+  .number:hover {
+    background-color: rgb(235, 73, 73);
+    color: white;
+  }
+  .col-6{
+    text-align: center;
+  }
+  .content-container h4,
+  .content-container p {
+    margin-bottom: 5px; /* Adjust the margin to control spacing */
+  }

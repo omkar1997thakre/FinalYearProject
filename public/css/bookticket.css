@@ -1,35 +1,97 @@
- /* Remove underline from anchor tags */
- a {
-    text-decoration: none;
-  }
+/* Your existing styles here */
 
-  /* Style for date container */
-  .date-container {
-    text-align: left;
-    font-family: Arial, sans-serif;
-    padding-left: 15px;
-  }
+/* Style for date container */
+.date-container {
+  text-align: left;
+  font-family: Arial, sans-serif;
+  padding-left: 15px;
+}
 
-  /* Style for day */
-  .day {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px; /* Reduce spacing between day and date */
-  }
+/* Style for date block */
+.date-block {
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+  cursor: pointer;
+}
 
-  /* Style for date */
-  .date {
-    font-size: 28px;
-    margin-bottom: 5px; /* Reduce spacing between date and month */
-  }
+/* Style for day, date, and month */
+.date-content {
+  display: none;
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background-color: #FF4500; /* Background color on hover */
+  color: #fff; /* Text color on hover */
+  padding: 5px 10px; /* Adjust padding to reduce spacing */
+  border-radius: 5px;
+}
 
-  /* Style for month */
-  .month {
-    font-size: 16px;
-  }
+/* Reduce spacing between day, month, and date */
+.day, .date, .month {
+  margin: 0; /* Remove default margin */
+  line-height: 1; /* Remove extra line spacing */
+  text-decoration: none;
+}
+.date-block a {
+  text-decoration: none; /* Remove underline from anchor tags */
+}
+/* Change text color on hover */
+.date-block a:hover {
+  color: #FF4500; /* New text color on hover */
+}
 
-  /* Display dates inline */
-  .date-block {
-    display: inline-block;
-    margin: 10px;
-  }
+
+/* Show the box on hover */
+/* Change text color and border color on hover */
+.date-block:hover .date-content {
+  color: #FF4500; /* New text color on hover */
+  border-color: #FF4500; /* New border color on hover */
+}
+
+/* Style for buttons within .date-container */
+.date-container .btn {
+  position: relative;
+  overflow: hidden;
+  background: none;
+  color: #f1e9e9; /* Text color of the button */
+  padding: 8px 15px; /* Padding around the button content */
+  border-radius: 5px; /* Rounded corners for the button */
+  cursor: pointer; /* Change the cursor on hover to indicate interactivity */
+  font-weight: bold; /* Add bold text */
+  border: 1px solid rgb(90, 3, 3);
+  transition: 0.8s;
+}
+
+/* Change button color on hover */
+.date-container .btn:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0c212f; /* New background color on hover */
+  z-index: -1;
+  transition: 0.8s;
+}
+.show-timings {
+  margin-top: 20px;
+  padding: 10px;
+ /* border: 2px solid #ccc;*/
+ /* border-radius: 8px;*/
+}
+
+.show-timing-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.show-timing a{
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 150px;
+  color: green;
+}
+

@@ -46,6 +46,7 @@ const UserSchema=new mongoose.Schema({
     }
 })
 
+
 //create a colection
 
 const Register = new mongoose.model("RegisterData",UserSchema)
